@@ -71,7 +71,6 @@ h2 { margin: 0 0 4px; }
   transition: background 0.12s ease;
 }
 .cell:hover { background: rgba(231, 243, 251, 0.16); }
-/* Ship silhouette: one continuous hull with rounded bow/stern. */
 .cell.ship {
   background: rgba(231, 243, 251, 0.05);
   position: relative;

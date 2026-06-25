@@ -51,7 +51,6 @@
   transition: background 0.15s ease, transform 0.1s ease;
 }
 
-/* Ship silhouette: a single hull spanning its cells, with rounded bow/stern. */
 .cell.ship {
   background: rgba(231, 243, 251, 0.05);
   position: relative;
@@ -68,7 +67,6 @@
     inset 0 -2px 4px rgba(0, 0, 0, 0.35);
   border-radius: 2px;
 }
-/* porthole detail on each hull segment */
 .cell.ship::after {
   content: '';
   position: absolute;
@@ -81,12 +79,10 @@
   background: radial-gradient(circle at 35% 30%, #c4dcec, #41607a);
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.4);
 }
-/* bridge the grid gap so adjacent segments read as one continuous hull */
 .cell[data-ship^='h']:not([data-ship$='bow'])::before { left: -4px; }
 .cell[data-ship^='h']:not([data-ship$='stern'])::before { right: -4px; }
 .cell[data-ship^='v']:not([data-ship$='bow'])::before { top: -4px; }
 .cell[data-ship^='v']:not([data-ship$='stern'])::before { bottom: -4px; }
-/* rounded nose (bow) and tapered stern */
 .cell[data-ship='h-bow']::before { border-radius: 50% 3px 3px 50% / 50%; }
 .cell[data-ship='h-stern']::before { border-radius: 3px 40% 40% 3px / 40%; }
 .cell[data-ship='v-bow']::before { border-radius: 50% 50% 3px 3px / 50% 50% 3px 3px; }

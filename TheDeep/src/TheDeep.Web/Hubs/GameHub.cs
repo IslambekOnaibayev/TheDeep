@@ -31,8 +31,6 @@ public sealed class GameHub(
     {
       var playerId = PlayerId.From(guid);
 
-      // One live session per identity: kick any older connections of the same
-      // player before registering this one, so the same name can't be used twice.
       var previous = presence.ConnectionsOf(playerId);
       presence.Add(Context.ConnectionId, playerId, name);
       if (previous.Count > 0)

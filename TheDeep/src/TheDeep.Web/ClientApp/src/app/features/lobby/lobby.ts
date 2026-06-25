@@ -37,7 +37,6 @@ export class Lobby implements OnInit {
 
   readonly query = signal('');
 
-  /** Open games filtered by room title or host name (case-insensitive). */
   readonly filteredGames = computed(() => {
     const q = this.query().trim().toLowerCase();
     const games = this.hub.lobby();

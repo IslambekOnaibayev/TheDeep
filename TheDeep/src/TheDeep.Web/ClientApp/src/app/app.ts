@@ -35,10 +35,8 @@ export class App {
   private readonly snackBar = inject(MatSnackBar);
   private readonly transloco = inject(TranslocoService);
 
-  /** True while the player is inside a game room — nav is hidden so they can't lose it. */
   protected readonly inGame = computed(() => this.hub.gameState() !== null);
 
-  /** The brand logo returns to the active room when in a game, otherwise to the lobby. */
   protected readonly brandLink = computed<unknown[]>(() => {
     const state = this.hub.gameState();
     if (state) return ['/game', state.gameId];
@@ -62,8 +60,6 @@ export class App {
       if (replaced === lastReplaced) return;
       lastReplaced = replaced;
       untracked(() => {
-        // The same identity took over in another window — exit quietly without
-        // forfeiting the game (it continues in the new window).
         this.clearSession();
         this.snackBar.open(
           this.transloco.translate('common.sessionReplaced'),
@@ -91,8 +87,6 @@ export class App {
   }
 
   async signOut() {
-    // Logging out while in a room must clear the room and notify the opponent
-    // immediately — leave the game before tearing down the connection.
     const game = this.hub.gameState();
     if (game) await this.hub.leaveGame(game.gameId).catch(() => undefined);
     this.clearSession();

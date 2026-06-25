@@ -20,9 +20,7 @@ export class GameHubService {
   readonly lobby = signal<GameSummary[]>([]);
   readonly gameState = signal<GameState | null>(null);
   readonly lastError = signal<string | null>(null);
-  /** Bumps when the server kicks this session because the same name signed in elsewhere. */
   readonly sessionReplaced = signal(0);
-  /** Bumps when the opponent leaves before the battle starts and the game is cancelled. */
   readonly gameCancelled = signal(0);
 
   async ensureStarted(): Promise<void> {
@@ -74,7 +72,7 @@ export class GameHubService {
       try {
         await this.connection.stop();
       } catch {
-        /* already closed */
+        this.connState.set('disconnected');
       }
       this.connection = undefined;
     }

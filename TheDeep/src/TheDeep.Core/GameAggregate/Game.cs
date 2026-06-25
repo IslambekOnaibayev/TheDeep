@@ -107,8 +107,6 @@ public sealed class Game : EntityBase<Game, GameId>, IAggregateRoot
   {
     if (Status == GameStatus.Finished) return;
 
-    // The battle hasn't started yet (waiting for an opponent or still placing
-    // ships): cancel the game outright — no winner, no stats, no record.
     if (Status != GameStatus.InProgress)
     {
       Status = GameStatus.Finished;

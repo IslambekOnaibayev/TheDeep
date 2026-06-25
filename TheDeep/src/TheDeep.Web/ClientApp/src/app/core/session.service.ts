@@ -6,11 +6,6 @@ import { Player } from './models';
 const PLAYER_ID_KEY = 'thedeep.playerId';
 const PLAYER_NAME_KEY = 'thedeep.name';
 
-// Identity is stored per browser window (sessionStorage), NOT per profile
-// (localStorage). Two windows of the same browser are therefore two distinct
-// players, so signing in with the same name yields "Matt" and "Matt 2" rather
-// than the second window hijacking the first one's identity. A reload keeps the
-// same identity because sessionStorage survives it.
 const store = sessionStorage;
 
 @Injectable({ providedIn: 'root' })

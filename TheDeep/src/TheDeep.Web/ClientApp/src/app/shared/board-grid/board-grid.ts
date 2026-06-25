@@ -83,7 +83,6 @@ function key(x: number, y: number): string {
   return `${x},${y}`;
 }
 
-/** Tags each cell of a ship as bow/mid/stern of a horizontal or vertical hull. */
 function assignShipPositions(cells: Coordinate[], out: Map<string, ShipPos>): void {
   if (cells.length === 0) return;
   if (cells.length === 1) {

@@ -29,8 +29,6 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Production
       Database__ApplyMigrationsOnStartup: "true"
-      # Inside the compose network the DB host is the service name 'postgres' on 5432,
-      # not the host-published 15432.
       ConnectionStrings__DefaultConnection: "Host=postgres;Port=5432;Database=thedeep;Username=thedeep;Password=thedeep"
     ports:
       - "8080:8080"

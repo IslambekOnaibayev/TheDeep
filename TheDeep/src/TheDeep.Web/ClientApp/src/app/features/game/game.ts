@@ -55,9 +55,6 @@ export class Game implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // Leaving the game screen by ANY means (button, result card, or typing a
-    // different URL) counts as leaving the room. If the game is still live, tell
-    // the server so the opponent is notified (forfeit win, or cancel during setup).
     const s = this.state();
     if (s && s.status !== 'Finished') {
       this.hub.leaveGame(s.gameId).catch(() => undefined);
