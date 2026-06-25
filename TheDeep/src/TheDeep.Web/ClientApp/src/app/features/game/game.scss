@@ -1,0 +1,97 @@
+.game-page { position: relative; }
+.pad { padding: 64px; }
+
+.game-head { margin-bottom: 16px; gap: 8px; }
+.game-head h1 { margin: 0; font-size: 1.4rem; }
+
+.matchup {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+  font-weight: 600;
+}
+.matchup .me { color: var(--sea-light); }
+.matchup .me .tag {
+  margin-left: 4px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--mat-sys-on-surface-variant);
+}
+.matchup .vs {
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--mat-sys-on-surface-variant);
+}
+.matchup .opp { color: var(--hit); }
+
+.card-pane {
+  display: grid;
+  place-items: center;
+  gap: 12px;
+  padding: 64px 24px;
+  text-align: center;
+}
+.waiting h2 { margin: 4px 0 0; }
+
+.turn-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  margin-bottom: 18px;
+  border-radius: 10px;
+  font-weight: 600;
+  background: var(--mat-sys-surface-container);
+  transition: background 0.2s ease;
+  min-height: 48px;
+}
+.turn-banner.your-turn {
+  background: linear-gradient(90deg, var(--sea-light), var(--sea));
+  color: var(--foam);
+}
+
+.boards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+@media (max-width: 860px) {
+  .boards { grid-template-columns: 1fr; }
+}
+
+.board { display: flex; flex-direction: column; gap: 8px; }
+.board-label { font-size: 0.85rem; font-weight: 500; }
+
+.result-overlay {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(7, 38, 58, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 20;
+  animation: fade 0.25s ease;
+}
+.result-card {
+  display: grid;
+  place-items: center;
+  gap: 10px;
+  padding: 40px 48px;
+  border-radius: 16px;
+  text-align: center;
+  background: var(--mat-sys-surface);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  animation: rise 0.3s ease;
+  > mat-icon { font-size: 64px; width: 64px; height: 64px; }
+  h2 { margin: 0; font-size: 2rem; }
+}
+.result-card.win > mat-icon { color: #f5c451; }
+.result-card.lose > mat-icon { color: var(--miss); }
+
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes rise { from { opacity: 0; transform: translateY(16px) scale(0.96); } to { opacity: 1; transform: none; } }

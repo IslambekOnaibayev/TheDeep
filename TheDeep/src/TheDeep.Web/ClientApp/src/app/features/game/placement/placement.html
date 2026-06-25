@@ -1,0 +1,75 @@
+<div class="placement">
+  <div class="left">
+    <h2>{{ 'placement.heading' | transloco }}</h2>
+    <p class="muted">{{ 'placement.instructions' | transloco }}</p>
+
+    <div class="tray">
+      @for (s of unplaced(); track s.id) {
+        <div
+          class="tray-ship"
+          [class.selected]="selectedId() === s.id"
+          draggable="true"
+          (click)="select(s.id)"
+          (dragstart)="select(s.id)"
+        >
+          @for (cell of [].constructor(s.length); track $index) {
+            <span class="seg"></span>
+          }
+        </div>
+      } @empty {
+        <div class="all-done muted">
+          <mat-icon>check_circle</mat-icon>{{ 'placement.complete' | transloco }}
+        </div>
+      }
+    </div>
+
+    <div class="actions">
+      <button mat-stroked-button (click)="rotateSelected()" [disabled]="selectedId() === null">
+        <mat-icon>rotate_90_degrees_cw</mat-icon>{{ 'placement.rotate' | transloco }}
+      </button>
+      <button mat-stroked-button (click)="random()">
+        <mat-icon>casino</mat-icon>{{ 'placement.random' | transloco }}
+      </button>
+      <button mat-stroked-button (click)="reset()">
+        <mat-icon>restart_alt</mat-icon>{{ 'placement.clear' | transloco }}
+      </button>
+    </div>
+
+    <div class="status">
+      @if (allPlaced()) {
+        <span class="ok"><mat-icon>check</mat-icon>{{ 'placement.complete' | transloco }}</span>
+      } @else {
+        <span class="muted">{{ 'placement.remaining' | transloco: { count: remaining() } }}</span>
+      }
+    </div>
+
+    <button mat-flat-button class="ready" [disabled]="!allPlaced()" (click)="ready()">
+      <mat-icon>anchor</mat-icon>{{ 'placement.ready' | transloco }}
+    </button>
+  </div>
+
+  <div class="board-side">
+    <div class="board-title muted">{{ 'placement.yours' | transloco }}</div>
+    <div
+      class="grid"
+      [style.grid-template-columns]="'repeat(' + width() + ', 1fr)'"
+      (mouseleave)="onCellLeaveGrid()"
+    >
+      @for (row of grid(); track $index) {
+        @for (cell of row; track cell.x) {
+          <div
+            class="cell"
+            [class.ship]="cell.occupied"
+            [attr.data-ship]="cell.shipPos"
+            [class.preview-valid]="cell.preview === 'valid'"
+            [class.preview-invalid]="cell.preview === 'invalid'"
+            (mouseenter)="onCellEnter(cell.x, cell.y)"
+            (click)="onCellClick(cell.x, cell.y)"
+            (dragover)="$event.preventDefault(); onCellEnter(cell.x, cell.y)"
+            (drop)="$event.preventDefault(); onCellClick(cell.x, cell.y)"
+          ></div>
+        }
+      }
+    </div>
+  </div>
+</div>

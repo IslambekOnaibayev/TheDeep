@@ -1,0 +1,47 @@
+@use '@angular/material' as mat;
+
+html {
+  color-scheme: light dark;
+  @include mat.theme((
+    color: (
+      theme-type: color-scheme,
+      primary: mat.$azure-palette,
+      tertiary: mat.$cyan-palette,
+    ),
+    typography: Roboto,
+    density: 0,
+  ));
+
+  --sea: #0b3d5c;
+  --sea-deep: #07263a;
+  --sea-light: #1d6fa5;
+  --foam: #e7f3fb;
+  --hit: #e5484d;
+  --sunk: #b4232a;
+  --miss: #8aa6b8;
+  --ship: #3a5566;
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  background:
+    radial-gradient(1200px 800px at 80% -10%, rgba(29, 111, 165, 0.18), transparent),
+    linear-gradient(180deg, var(--mat-sys-surface), var(--mat-sys-surface-container));
+  color: var(--mat-sys-on-surface);
+}
+
+.page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 16px 64px;
+}
+
+.row { display: flex; gap: 12px; align-items: center; }
+.spacer { flex: 1 1 auto; }
+.muted { color: var(--mat-sys-on-surface-variant); }
+.center { display: grid; place-items: center; }

@@ -1,0 +1,18 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/Solution Items/">
+    <File Path="TheDeep/.editorconfig" />
+    <File Path="TheDeep/Directory.Build.props" />
+    <File Path="TheDeep/Directory.Packages.props" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="TheDeep/src/TheDeep.Core/TheDeep.Core.csproj" />
+    <Project Path="TheDeep/src/TheDeep.Infrastructure/TheDeep.Infrastructure.csproj" />
+    <Project Path="TheDeep/src/TheDeep.UseCases/TheDeep.UseCases.csproj" />
+    <Project Path="TheDeep/src/TheDeep.Web/TheDeep.Web.csproj" />
+  </Folder>
+</Solution>

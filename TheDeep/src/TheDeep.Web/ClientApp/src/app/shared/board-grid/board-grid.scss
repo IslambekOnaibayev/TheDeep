@@ -1,0 +1,134 @@
+:host {
+  display: block;
+  --gap: 3px;
+}
+
+.grid-wrap {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  grid-template-rows: 20px 1fr;
+  gap: 6px;
+  width: 100%;
+}
+
+.corner { grid-area: 1 / 1; }
+
+.col-labels {
+  grid-area: 1 / 2;
+  display: grid;
+  gap: var(--gap);
+  text-align: center;
+}
+.row-labels {
+  grid-area: 2 / 1;
+  display: grid;
+  gap: var(--gap);
+  align-items: center;
+  text-align: center;
+}
+.col-labels span,
+.row-labels span {
+  font-size: 0.7rem;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.grid {
+  grid-area: 2 / 2;
+  display: grid;
+  gap: var(--gap);
+  padding: 6px;
+  border-radius: 10px;
+  background: linear-gradient(160deg, var(--sea), var(--sea-deep));
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.cell {
+  aspect-ratio: 1 / 1;
+  border-radius: 4px;
+  background: rgba(231, 243, 251, 0.08);
+  display: grid;
+  place-items: center;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+/* Ship silhouette: a single hull spanning its cells, with rounded bow/stern. */
+.cell.ship {
+  background: rgba(231, 243, 251, 0.05);
+  position: relative;
+  overflow: visible;
+}
+.cell.ship::before {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  z-index: 1;
+  background: linear-gradient(150deg, #6b8497 0%, #3e5567 55%, #2c3e4d 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.35);
+  border-radius: 2px;
+}
+/* porthole detail on each hull segment */
+.cell.ship::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  margin: auto;
+  width: 22%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #c4dcec, #41607a);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.4);
+}
+/* bridge the grid gap so adjacent segments read as one continuous hull */
+.cell[data-ship^='h']:not([data-ship$='bow'])::before { left: -4px; }
+.cell[data-ship^='h']:not([data-ship$='stern'])::before { right: -4px; }
+.cell[data-ship^='v']:not([data-ship$='bow'])::before { top: -4px; }
+.cell[data-ship^='v']:not([data-ship$='stern'])::before { bottom: -4px; }
+/* rounded nose (bow) and tapered stern */
+.cell[data-ship='h-bow']::before { border-radius: 50% 3px 3px 50% / 50%; }
+.cell[data-ship='h-stern']::before { border-radius: 3px 40% 40% 3px / 40%; }
+.cell[data-ship='v-bow']::before { border-radius: 50% 50% 3px 3px / 50% 50% 3px 3px; }
+.cell[data-ship='v-stern']::before { border-radius: 3px 3px 40% 40% / 3px 3px 40% 40%; }
+.cell[data-ship='single']::before { border-radius: 50%; }
+
+.cell.miss { background: rgba(231, 243, 251, 0.12); }
+.cell.hit { background: radial-gradient(circle, #ff7a45, var(--hit)); }
+.cell.sunk { background: radial-gradient(circle, var(--hit), var(--sunk)); }
+
+.cell.clickable { cursor: crosshair; }
+.interactive .cell.clickable:hover {
+  background: rgba(231, 243, 251, 0.28);
+  transform: scale(1.06);
+}
+
+.cell.just-fired { animation: pop 0.35s ease; }
+
+.mark.dot {
+  width: 26%;
+  height: 26%;
+  border-radius: 50%;
+  background: var(--miss);
+}
+.mark.x {
+  width: 60%;
+  height: 60%;
+  position: relative;
+}
+.mark.x::before,
+.mark.x::after {
+  content: '';
+  position: absolute;
+  inset: 45% 0;
+  background: #fff;
+  border-radius: 2px;
+}
+.mark.x::before { transform: rotate(45deg); }
+.mark.x::after { transform: rotate(-45deg); }
+
+@keyframes pop {
+  0% { transform: scale(0.6); }
+  60% { transform: scale(1.18); }
+  100% { transform: scale(1); }
+}

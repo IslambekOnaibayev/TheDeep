@@ -1,0 +1,9 @@
+﻿global using Ardalis.Result;
+global using Ardalis.SharedKernel;
+global using Mediator;
+global using TheDeep.Core.GameAggregate.ValueObjects;
+global using TheDeep.Core.GameAggregate.Primitives;
+global using TheDeep.Core.GameAggregate.Entities;
+global using TheDeep.Core.GameAggregate.Enums;
+global using TheDeep.Core.GameAggregate.Exceptions;
+global using TheDeep.Core.PlayerAggregate.Primitives;

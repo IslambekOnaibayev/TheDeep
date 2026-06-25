@@ -1,0 +1,13 @@
+﻿global using Ardalis.GuardClauses;
+global using Ardalis.Result;
+global using Ardalis.SharedKernel;
+global using Ardalis.SmartEnum;
+global using Ardalis.Specification;
+global using Mediator;
+global using Microsoft.Extensions.Logging;
+global using TheDeep.Core.GameAggregate.ValueObjects;
+global using TheDeep.Core.GameAggregate.Primitives;
+global using TheDeep.Core.GameAggregate.Entities;
+global using TheDeep.Core.GameAggregate.Enums;
+global using TheDeep.Core.GameAggregate.Exceptions;
+global using TheDeep.Core.PlayerAggregate.Primitives;

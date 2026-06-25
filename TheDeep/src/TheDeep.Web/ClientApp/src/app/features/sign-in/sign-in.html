@@ -1,0 +1,34 @@
+<div class="page center hero">
+  <mat-card class="card" appearance="outlined">
+    <div class="logo">
+      <mat-icon>anchor</mat-icon>
+    </div>
+    <h1>{{ 'signin.heading' | transloco }}</h1>
+    <p class="muted">{{ 'signin.prompt' | transloco }}</p>
+
+    <mat-form-field appearance="outline" class="full">
+      <mat-label>{{ 'signin.namePlaceholder' | transloco }}</mat-label>
+      <input
+        matInput
+        maxlength="24"
+        [value]="name()"
+        (input)="name.set($any($event.target).value)"
+        (keyup.enter)="start()"
+        autofocus
+      />
+    </mat-form-field>
+
+    <button
+      mat-flat-button
+      class="full"
+      [disabled]="!name().trim() || submitting()"
+      (click)="start()"
+    >
+      {{ 'signin.button' | transloco }}
+    </button>
+
+    @if (name().trim()) {
+      <p class="hint muted">{{ 'signin.hint' | transloco: { name: name().trim() } }}</p>
+    }
+  </mat-card>
+</div>

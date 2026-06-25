@@ -1,0 +1,24 @@
+<div class="page">
+  <h1>{{ 'settings.heading' | transloco }}</h1>
+
+  <mat-card appearance="outlined" class="card">
+    <div class="row label">
+      <mat-icon>translate</mat-icon>
+      <div>
+        <div class="title">{{ 'settings.language' | transloco }}</div>
+        <div class="muted small">{{ 'settings.languageHint' | transloco }}</div>
+      </div>
+    </div>
+
+    <mat-button-toggle-group
+      class="langs"
+      [value]="lang.active"
+      (change)="lang.use($event.value)"
+      aria-label="language"
+    >
+      @for (l of lang.languages; track l.id) {
+        <mat-button-toggle [value]="l.id">{{ l.label }}</mat-button-toggle>
+      }
+    </mat-button-toggle-group>
+  </mat-card>
+</div>

@@ -1,0 +1,42 @@
+<div class="page">
+  <h1>{{ 'leaderboard.heading' | transloco }}</h1>
+
+  @if (loading()) {
+    <div class="center pad"><mat-spinner diameter="40" /></div>
+  } @else if (entries().length === 0) {
+    <mat-card appearance="outlined" class="empty">
+      <mat-icon>emoji_events</mat-icon>
+      <p class="muted">{{ 'leaderboard.empty' | transloco }}</p>
+    </mat-card>
+  } @else {
+    <mat-card appearance="outlined" class="card">
+      <table class="board">
+        <thead>
+          <tr>
+            <th class="num">{{ 'leaderboard.rank' | transloco }}</th>
+            <th>{{ 'leaderboard.player' | transloco }}</th>
+            <th class="num">{{ 'leaderboard.wins' | transloco }}</th>
+            <th class="num">{{ 'leaderboard.losses' | transloco }}</th>
+            <th class="num">{{ 'leaderboard.games' | transloco }}</th>
+            <th class="num">{{ 'leaderboard.winRate' | transloco }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (e of entries(); track e.id) {
+            <tr [class.top]="e.rank <= 3">
+              <td class="num rank">
+                @if (e.rank === 1) { 🥇 } @else if (e.rank === 2) { 🥈 }
+                @else if (e.rank === 3) { 🥉 } @else { {{ e.rank }} }
+              </td>
+              <td class="name">{{ e.name }}</td>
+              <td class="num">{{ e.wins }}</td>
+              <td class="num">{{ e.losses }}</td>
+              <td class="num">{{ e.gamesPlayed }}</td>
+              <td class="num">{{ percent(e.winRate) }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </mat-card>
+  }
+</div>

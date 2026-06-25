@@ -1,0 +1,35 @@
+<div class="grid-wrap" [class.interactive]="interactive()">
+  <div class="corner"></div>
+  <div class="col-labels" [style.grid-template-columns]="'repeat(' + width() + ', 1fr)'">
+    @for (c of columns(); track $index) {
+      <span>{{ c }}</span>
+    }
+  </div>
+
+  <div class="row-labels" [style.grid-template-rows]="'repeat(' + height() + ', 1fr)'">
+    @for (r of rowLabels(); track $index) {
+      <span>{{ r }}</span>
+    }
+  </div>
+
+  <div
+    class="grid"
+    [style.grid-template-columns]="'repeat(' + width() + ', 1fr)'"
+    [style.grid-template-rows]="'repeat(' + height() + ', 1fr)'"
+  >
+    @for (row of rows(); track $index) {
+      @for (cell of row; track cell.x) {
+        <div
+          class="cell {{ cell.kind }}"
+          [class.clickable]="cell.clickable"
+          [class.just-fired]="cell.justFired"
+          [attr.data-ship]="cell.shipPos"
+          (click)="onCell(cell)"
+        >
+          @if (cell.kind === 'miss') { <span class="mark dot"></span> }
+          @else if (cell.kind === 'hit' || cell.kind === 'sunk') { <span class="mark x"></span> }
+        </div>
+      }
+    }
+  </div>
+</div>

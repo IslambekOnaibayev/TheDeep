@@ -1,0 +1,109 @@
+@let s = state();
+
+<div class="page game-page">
+  @if (loading() || !s) {
+    <div class="center pad"><mat-spinner diameter="44" /></div>
+  } @else {
+    <div class="game-head row">
+      <div>
+        <h1>{{ s.title }}</h1>
+        <span class="muted">{{ 'status.' + s.status | transloco }}</span>
+        <div class="matchup">
+          <span class="me">{{ yourName() }}<span class="tag">({{ 'battle.you' | transloco }})</span></span>
+          @if (opponentName()) {
+            <span class="vs">{{ 'common.vs' | transloco }}</span>
+            <span class="opp">{{ opponentName() }}</span>
+          }
+        </div>
+      </div>
+      <span class="spacer"></span>
+      <button mat-stroked-button color="warn" (click)="leave()">
+        <mat-icon>logout</mat-icon>{{ 'battle.leave' | transloco }}
+      </button>
+    </div>
+
+    @if (s.status === 'WaitingForOpponent') {
+      <div class="waiting card-pane">
+        <mat-spinner diameter="40" />
+        <h2>{{ 'lobby.waiting' | transloco }}</h2>
+        <p class="muted">{{ 'lobby.subheading' | transloco }}</p>
+      </div>
+    }
+
+    @else if (s.status === 'PlacingShips') {
+      @if (!s.youReady) {
+        <app-placement
+          [width]="s.width"
+          [height]="s.height"
+          [fleet]="s.fleet"
+          [shipsMayTouch]="s.shipsMayTouch"
+          (confirm)="onConfirmPlacement($event)"
+        />
+      } @else {
+        <div class="waiting card-pane">
+          <mat-spinner diameter="40" />
+          <h2>{{ 'placement.waitingOpponent' | transloco }}</h2>
+        </div>
+      }
+    }
+
+    @else {
+      <div class="turn-banner" [class.your-turn]="s.isYourTurn && s.status === 'InProgress'">
+        @if (s.status === 'InProgress') {
+          @if (s.isYourTurn) {
+            <mat-icon>gps_fixed</mat-icon>{{ 'battle.yourTurn' | transloco }}
+          } @else {
+            <mat-icon>hourglass_top</mat-icon>{{ 'battle.opponentTurn' | transloco: { name: opponentName() } }}
+          }
+        }
+      </div>
+
+      <div class="boards">
+        <div class="board">
+          <div class="board-label muted">{{ 'battle.yourFleet' | transloco }}</div>
+          <app-board-grid
+            [width]="s.width"
+            [height]="s.height"
+            [ships]="s.yourBoard.ships"
+            [shots]="s.yourBoard.shots"
+            [showShips]="true"
+            [interactive]="false"
+          />
+        </div>
+
+        <div class="board">
+          <div class="board-label muted">{{ 'battle.enemyWaters' | transloco }}</div>
+          <app-board-grid
+            [width]="s.width"
+            [height]="s.height"
+            [ships]="s.enemyBoard.ships"
+            [shots]="s.enemyBoard.shots"
+            [showShips]="false"
+            [interactive]="s.isYourTurn && s.status === 'InProgress'"
+            [lastShot]="lastShot()"
+            (cellClick)="fire($event)"
+          />
+        </div>
+      </div>
+
+      @if (s.status === 'Finished') {
+        <div class="result-overlay">
+          <div class="result-card" [class.win]="youWon()" [class.lose]="!youWon()">
+            <mat-icon>{{ youWon() ? 'emoji_events' : 'sentiment_very_dissatisfied' }}</mat-icon>
+            <h2>{{ (youWon() ? 'result.victory' : 'result.defeat') | transloco }}</h2>
+            <p>
+              @if (youWon()) {
+                {{ (s.endedByForfeit ? 'result.wonForfeit' : 'result.youWon') | transloco: { name: opponentName() } }}
+              } @else {
+                {{ (s.endedByForfeit ? 'result.lostForfeit' : 'result.youLost') | transloco: { name: opponentName() } }}
+              }
+            </p>
+            <button mat-flat-button (click)="backToLobby()">
+              <mat-icon>arrow_back</mat-icon>{{ 'result.rematch' | transloco }}
+            </button>
+          </div>
+        </div>
+      }
+    }
+  }
+</div>

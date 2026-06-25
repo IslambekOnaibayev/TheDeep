@@ -1,0 +1,22 @@
+# .NET
+bin/
+obj/
+*.user
+.vs/
+
+# EF / local db
+database.sqlite
+
+# Node / Angular
+node_modules/
+dist/
+.angular/
+
+# Built SPA output (generated from ClientApp)
+TheDeep/src/TheDeep.Web/wwwroot/*
+!TheDeep/src/TheDeep.Web/wwwroot/.gitkeep
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp

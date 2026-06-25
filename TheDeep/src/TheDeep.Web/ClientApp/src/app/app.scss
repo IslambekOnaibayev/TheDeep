@@ -1,0 +1,46 @@
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  gap: 4px;
+  background: var(--sea-deep);
+  color: var(--foam);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--foam);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-right: 12px;
+}
+
+.brand-name { font-size: 1.2rem; }
+
+.nav a.active { background: rgba(255, 255, 255, 0.12); }
+
+.who { font-weight: 500; margin: 0 4px; opacity: 0.9; }
+
+.conn {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 2px;
+  .dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--miss);
+  }
+}
+.conn-connected .dot { background: #3ecf8e; box-shadow: 0 0 6px #3ecf8e; }
+.conn-connecting .dot,
+.conn-reconnecting .dot { background: #f5c451; }
+.conn-disconnected .dot { background: var(--hit); }
+
+.active-lang { font-weight: 700; }
+
+main { display: block; }

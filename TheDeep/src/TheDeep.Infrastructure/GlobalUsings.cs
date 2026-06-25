@@ -1,0 +1,15 @@
+global using System.Reflection;
+global using Ardalis.GuardClauses;
+global using Ardalis.SharedKernel;
+global using Ardalis.Specification.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore.Metadata.Builders;
+global using Microsoft.Extensions.Configuration;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Logging;
+global using Microsoft.Extensions.Options;
+global using TheDeep.Core.GameAggregate.ValueObjects;
+global using TheDeep.Core.GameAggregate.Primitives;
+global using TheDeep.Core.GameAggregate.Entities;
+global using TheDeep.Core.GameAggregate.Enums;
+global using TheDeep.Core.PlayerAggregate.Primitives;

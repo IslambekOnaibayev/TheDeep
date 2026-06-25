@@ -1,0 +1,27 @@
+.hero {
+  min-height: calc(100dvh - 64px);
+}
+
+.card {
+  width: min(440px, 92vw);
+  padding: 32px;
+  text-align: center;
+}
+
+.logo {
+  display: grid;
+  place-items: center;
+  margin-bottom: 8px;
+  mat-icon {
+    font-size: 56px;
+    width: 56px;
+    height: 56px;
+    color: var(--sea-light);
+  }
+}
+
+h1 { margin: 4px 0 8px; }
+
+.full { width: 100%; }
+
+.hint { font-size: 0.85rem; margin-top: 12px; }

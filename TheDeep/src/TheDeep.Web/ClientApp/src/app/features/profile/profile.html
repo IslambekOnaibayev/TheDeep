@@ -1,0 +1,33 @@
+<div class="page">
+  <h1>{{ 'profile.heading' | transloco }}</h1>
+
+  @if (session.player(); as p) {
+    <div class="who-line">
+      <div class="avatar">{{ p.name.charAt(0).toUpperCase() }}</div>
+      <span class="name">{{ p.name }}</span>
+    </div>
+
+    <div class="stats">
+      <mat-card appearance="outlined" class="stat">
+        <mat-icon>videogame_asset</mat-icon>
+        <div class="value">{{ p.gamesPlayed }}</div>
+        <div class="muted">{{ 'profile.games' | transloco }}</div>
+      </mat-card>
+      <mat-card appearance="outlined" class="stat win">
+        <mat-icon>military_tech</mat-icon>
+        <div class="value">{{ p.wins }}</div>
+        <div class="muted">{{ 'profile.wins' | transloco }}</div>
+      </mat-card>
+      <mat-card appearance="outlined" class="stat loss">
+        <mat-icon>sentiment_dissatisfied</mat-icon>
+        <div class="value">{{ p.losses }}</div>
+        <div class="muted">{{ 'profile.losses' | transloco }}</div>
+      </mat-card>
+      <mat-card appearance="outlined" class="stat">
+        <mat-icon>percent</mat-icon>
+        <div class="value">{{ winRate() }}</div>
+        <div class="muted">{{ 'profile.winRate' | transloco }}</div>
+      </mat-card>
+    </div>
+  }
+</div>

@@ -1,0 +1,26 @@
+.content { display: flex; flex-direction: column; padding-top: 8px; }
+.full { width: 100%; }
+
+.section {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--mat-sys-on-surface-variant);
+  margin: 6px 0 8px;
+}
+
+.presets { flex-wrap: wrap; margin-bottom: 8px; }
+
+.dims { display: flex; gap: 12px; }
+.dims mat-form-field { flex: 1; }
+
+.fleet { display: flex; flex-direction: column; gap: 4px; }
+.ship-row { display: flex; align-items: center; gap: 8px; }
+.small-field { width: 96px; }
+.times { color: var(--mat-sys-on-surface-variant); }
+
+.summary { margin: 10px 0; font-size: 0.9rem; }
+.summary.error { color: var(--hit); }
+.err { font-weight: 500; }
+
+.toggles { display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }

@@ -1,0 +1,39 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: thedeep-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: thedeep
+      POSTGRES_PASSWORD: thedeep
+      POSTGRES_DB: thedeep
+    ports:
+      - "15432:5432"
+    volumes:
+      - thedeep-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U thedeep -d thedeep"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: thedeep-web
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      Database__ApplyMigrationsOnStartup: "true"
+      # Inside the compose network the DB host is the service name 'postgres' on 5432,
+      # not the host-published 15432.
+      ConnectionStrings__DefaultConnection: "Host=postgres;Port=5432;Database=thedeep;Username=thedeep;Password=thedeep"
+    ports:
+      - "8080:8080"
+
+volumes:
+  thedeep-pgdata:

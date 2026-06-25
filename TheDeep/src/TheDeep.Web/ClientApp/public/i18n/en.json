@@ -1,0 +1,133 @@
+{
+  "app": { "title": "The Deep", "tagline": "Multiplayer Battleship" },
+  "nav": {
+    "lobby": "Lobby",
+    "leaderboard": "Leaderboard",
+    "profile": "Profile",
+    "settings": "Settings",
+    "signOut": "Sign out"
+  },
+  "signin": {
+    "heading": "Enter the deep",
+    "prompt": "Choose a name to play under. No password, no sign-up.",
+    "namePlaceholder": "Your name",
+    "button": "Start playing",
+    "hint": "If someone is already “{{name}}”, you'll be shown as “{{name}} 2”."
+  },
+  "lobby": {
+    "heading": "Open games",
+    "subheading": "Join a session or create your own.",
+    "create": "Create game",
+    "join": "Join",
+    "empty": "No open games right now. Create one and wait for a challenger.",
+    "host": "Host",
+    "grid": "Grid",
+    "ships": "Ships",
+    "refresh": "Refresh",
+    "yourGame": "Your game",
+    "waiting": "Waiting for an opponent…",
+    "rules": "Hit = shoot again",
+    "searchPlaceholder": "Search by room or host name",
+    "noMatches": "No games match your search."
+  },
+  "create": {
+    "title": "New game",
+    "gameTitle": "Game title",
+    "gameTitlePlaceholder": "Optional name for your session",
+    "gridSize": "Grid size",
+    "width": "Width",
+    "height": "Height",
+    "fleet": "Fleet",
+    "preset": "Preset",
+    "presetClassic": "Classic (10×10)",
+    "presetSmall": "Skirmish (8×8)",
+    "presetCustom": "Custom",
+    "shipsMayTouch": "Ships may touch",
+    "extraTurnOnHit": "Extra turn on a hit",
+    "create": "Create",
+    "cancel": "Cancel",
+    "shipLength": "Length",
+    "shipCount": "Count",
+    "addShip": "Add ship type",
+    "remove": "Remove",
+    "fleetCells": "{{cells}} cells across {{ships}} ships",
+    "invalidFleet": "This fleet does not fit on the chosen grid."
+  },
+  "placement": {
+    "heading": "Place your fleet",
+    "instructions": "Drag ships onto the grid. Click a ship to rotate it.",
+    "random": "Random",
+    "clear": "Clear",
+    "rotate": "Rotate",
+    "ready": "I'm ready",
+    "remaining": "To place: {{count}}",
+    "complete": "Fleet ready — confirm to start.",
+    "waitingOpponent": "Waiting for your opponent to place their fleet…",
+    "yours": "Your waters",
+    "invalid": "That spot doesn't work — ships can't overlap or touch."
+  },
+  "battle": {
+    "yourFleet": "Your fleet",
+    "enemyWaters": "Enemy waters",
+    "yourTurn": "Your turn — fire!",
+    "opponentTurn": "{{name}} is taking aim…",
+    "fire": "Fire",
+    "leave": "Leave game",
+    "opponentLeft": "Your opponent left the game.",
+    "cancelled": "Opponent left before the battle — game cancelled.",
+    "you": "You",
+    "lastShot": "{{result}} at {{cell}}"
+  },
+  "shot": { "Miss": "Miss", "Hit": "Hit", "Sunk": "Sunk" },
+  "result": {
+    "victory": "Victory!",
+    "defeat": "Defeated",
+    "youWon": "You sank {{name}}'s entire fleet.",
+    "youLost": "{{name}} sank your fleet.",
+    "wonForfeit": "{{name}} left — the win is yours.",
+    "lostForfeit": "You left the game.",
+    "rematch": "Back to lobby",
+    "stats": "View stats"
+  },
+  "profile": {
+    "heading": "Your record",
+    "games": "Games",
+    "wins": "Wins",
+    "losses": "Losses",
+    "winRate": "Win rate"
+  },
+  "leaderboard": {
+    "heading": "Leaderboard",
+    "rank": "#",
+    "player": "Player",
+    "wins": "Wins",
+    "losses": "Losses",
+    "games": "Games",
+    "winRate": "Win rate",
+    "empty": "No games have been played yet. Be the first!"
+  },
+  "settings": {
+    "heading": "Settings",
+    "language": "Language",
+    "languageHint": "Pick your language. It's saved on this device."
+  },
+  "status": {
+    "WaitingForOpponent": "Waiting for opponent",
+    "PlacingShips": "Placing ships",
+    "InProgress": "In progress",
+    "Finished": "Finished"
+  },
+  "conn": {
+    "connecting": "Connecting…",
+    "connected": "Connected",
+    "reconnecting": "Reconnecting…",
+    "disconnected": "Disconnected"
+  },
+  "common": {
+    "cancel": "Cancel",
+    "close": "Close",
+    "loading": "Loading…",
+    "vs": "vs",
+    "sessionReplaced": "You were signed out because this name was opened in another window."
+  }
+}

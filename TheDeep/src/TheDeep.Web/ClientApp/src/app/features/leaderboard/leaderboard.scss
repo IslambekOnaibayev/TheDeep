@@ -1,0 +1,23 @@
+.card { padding: 8px 4px; overflow-x: auto; }
+.pad { padding: 48px; }
+
+.empty {
+  display: grid;
+  place-items: center;
+  gap: 8px;
+  padding: 48px;
+  text-align: center;
+  mat-icon { font-size: 48px; width: 48px; height: 48px; color: var(--sea-light); }
+}
+
+table.board {
+  width: 100%;
+  border-collapse: collapse;
+  th, td { padding: 12px 14px; text-align: left; }
+  th { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.4px; color: var(--mat-sys-on-surface-variant); }
+  .num { text-align: right; }
+  tbody tr { border-top: 1px solid var(--mat-sys-outline-variant); }
+  tbody tr.top .name { font-weight: 700; }
+  .rank { font-size: 1.05rem; }
+  .name { font-weight: 500; }
+}

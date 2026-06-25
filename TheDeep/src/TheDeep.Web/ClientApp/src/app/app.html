@@ -1,0 +1,44 @@
+<mat-toolbar class="topbar">
+  <a class="brand" [routerLink]="brandLink()">
+    <mat-icon>sailing</mat-icon>
+    <span class="brand-name">{{ 'app.title' | transloco }}</span>
+  </a>
+
+  @if (session.isSignedIn() && !inGame()) {
+    <nav class="nav">
+      <a mat-button routerLink="/lobby" routerLinkActive="active">{{ 'nav.lobby' | transloco }}</a>
+      <a mat-button routerLink="/leaderboard" routerLinkActive="active">{{ 'nav.leaderboard' | transloco }}</a>
+      <a mat-button routerLink="/profile" routerLinkActive="active">{{ 'nav.profile' | transloco }}</a>
+    </nav>
+  }
+
+  <span class="spacer"></span>
+
+  @if (session.isSignedIn()) {
+    <span class="conn conn-{{ hub.connState() }}" [title]="'conn.' + hub.connState() | transloco">
+      <span class="dot"></span>
+    </span>
+    <span class="who">{{ session.player()?.name }}</span>
+  }
+
+  <button mat-icon-button [matMenuTriggerFor]="langMenu" aria-label="language">
+    <mat-icon>translate</mat-icon>
+  </button>
+  <mat-menu #langMenu="matMenu">
+    @for (l of lang.languages; track l.id) {
+      <button mat-menu-item (click)="lang.use(l.id)">
+        <span [class.active-lang]="lang.active === l.id">{{ l.label }}</span>
+      </button>
+    }
+  </mat-menu>
+
+  @if (session.isSignedIn()) {
+    <button mat-icon-button (click)="signOut()" [attr.aria-label]="'nav.signOut' | transloco">
+      <mat-icon>logout</mat-icon>
+    </button>
+  }
+</mat-toolbar>
+
+<main>
+  <router-outlet />
+</main>

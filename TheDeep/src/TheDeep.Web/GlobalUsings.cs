@@ -1,0 +1,12 @@
+﻿global using Ardalis.Result;
+global using FastEndpoints;
+global using FastEndpoints.Swagger;
+global using Mediator;
+global using Microsoft.EntityFrameworkCore;
+global using Serilog;
+global using Serilog.Extensions.Logging;
+global using TheDeep.Core.GameAggregate.ValueObjects;
+global using TheDeep.Core.GameAggregate.Primitives;
+global using TheDeep.Core.GameAggregate.Entities;
+global using TheDeep.Core.GameAggregate.Enums;
+global using TheDeep.Core.PlayerAggregate.Primitives;

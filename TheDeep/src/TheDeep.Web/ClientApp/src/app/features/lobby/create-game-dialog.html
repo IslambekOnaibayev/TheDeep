@@ -1,0 +1,74 @@
+<h2 mat-dialog-title>{{ 'create.title' | transloco }}</h2>
+
+<mat-dialog-content class="content">
+  <mat-form-field appearance="outline" class="full">
+    <mat-label>{{ 'create.gameTitle' | transloco }}</mat-label>
+    <input matInput maxlength="40" [value]="title()" (input)="title.set($any($event.target).value)"
+           [placeholder]="'create.gameTitlePlaceholder' | transloco" />
+  </mat-form-field>
+
+  <label class="section">{{ 'create.preset' | transloco }}</label>
+  <mat-button-toggle-group [value]="preset()" (change)="usePreset($event.value)" class="presets">
+    <mat-button-toggle value="classic">{{ 'create.presetClassic' | transloco }}</mat-button-toggle>
+    <mat-button-toggle value="small">{{ 'create.presetSmall' | transloco }}</mat-button-toggle>
+    <mat-button-toggle value="custom">{{ 'create.presetCustom' | transloco }}</mat-button-toggle>
+  </mat-button-toggle-group>
+
+  <label class="section">{{ 'create.gridSize' | transloco }}</label>
+  <div class="dims">
+    <mat-form-field appearance="outline">
+      <mat-label>{{ 'create.width' | transloco }}</mat-label>
+      <input matInput type="number" min="7" max="12" [value]="width()"
+             (input)="setDimension('width', +$any($event.target).value)" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>{{ 'create.height' | transloco }}</mat-label>
+      <input matInput type="number" min="7" max="12" [value]="height()"
+             (input)="setDimension('height', +$any($event.target).value)" />
+    </mat-form-field>
+  </div>
+
+  <label class="section">{{ 'create.fleet' | transloco }}</label>
+  <div class="fleet">
+    @for (s of fleet(); track $index) {
+      <div class="ship-row">
+        <mat-form-field appearance="outline" class="small-field">
+          <mat-label>{{ 'create.shipLength' | transloco }}</mat-label>
+          <input matInput type="number" min="1" [value]="s.length"
+                 (input)="updateShip($index, 'length', +$any($event.target).value)" />
+        </mat-form-field>
+        <span class="times">×</span>
+        <mat-form-field appearance="outline" class="small-field">
+          <mat-label>{{ 'create.shipCount' | transloco }}</mat-label>
+          <input matInput type="number" min="1" [value]="s.count"
+                 (input)="updateShip($index, 'count', +$any($event.target).value)" />
+        </mat-form-field>
+        <button mat-icon-button (click)="removeShip($index)" [attr.aria-label]="'create.remove' | transloco">
+          <mat-icon>delete_outline</mat-icon>
+        </button>
+      </div>
+    }
+    <button mat-stroked-button (click)="addShip()">
+      <mat-icon>add</mat-icon>{{ 'create.addShip' | transloco }}
+    </button>
+  </div>
+
+  <div class="summary" [class.error]="!valid()">
+    {{ 'create.fleetCells' | transloco: { cells: totalCells(), ships: totalShips() } }}
+    @if (!valid()) { <span class="err">— {{ 'create.invalidFleet' | transloco }}</span> }
+  </div>
+
+  <div class="toggles">
+    <mat-slide-toggle [checked]="extraTurnOnHit()" (change)="extraTurnOnHit.set($event.checked)">
+      {{ 'create.extraTurnOnHit' | transloco }}
+    </mat-slide-toggle>
+    <mat-slide-toggle [checked]="shipsMayTouch()" (change)="shipsMayTouch.set($event.checked)">
+      {{ 'create.shipsMayTouch' | transloco }}
+    </mat-slide-toggle>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancel()">{{ 'create.cancel' | transloco }}</button>
+  <button mat-flat-button [disabled]="!valid()" (click)="create()">{{ 'create.create' | transloco }}</button>
+</mat-dialog-actions>
