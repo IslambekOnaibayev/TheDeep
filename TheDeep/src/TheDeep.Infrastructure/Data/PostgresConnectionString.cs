@@ -1,4 +1,4 @@
-namespace TheDeep.Infrastructure.Data;
+﻿namespace TheDeep.Infrastructure.Data;
 
 public static class PostgresConnectionString
 {
@@ -21,6 +21,6 @@ public static class PostgresConnectionString
     var port = uri.Port > 0 ? uri.Port : 5432;
 
     return $"Host={uri.Host};Port={port};Database={database};Username={user};Password={password};" +
-           "SSL Mode=Require;Trust Server Certificate=true";
+           "SSL Mode=Prefer;Trust Server Certificate=true";
   }
 }
